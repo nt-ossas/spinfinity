@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spinfinity</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js"></script>
+</head>
+<body>
+    <h1>Spinfinity</h1>
+    <main>
+        <div class="box">
+            <div class="reel-container container">
+                <div class="reel" id="reel1">7️⃣</div>
+                <div class="reel" id="reel2">7️⃣</div>
+                <div class="reel" id="reel3">7️⃣</div>
+            </div>
+            <div class="button-container container">
+                <select name="difficulty" id="difficulty" class="button">
+                    <option value="1">Skibidi Toilet</option>
+                    <option value="2" selected>Beta</option>
+                    <option value="3">Alpha</option>
+                    <option value="4">Sigma</option>
+                </select>
+                <select name="amount" id="betAmount" class="button">
+                    <option value="1" selected>1</option>
+                    <option value="3" selected>3</option>
+                    <option value="5" selected>5</option>
+                    <option value="10" selected>10</option>
+                </select>
+                <button class="button" onclick="spin()">SPIN</button>
+            </div>
+        </div>
+        <div class="box">
+            <h2>Portafoglio: </h2>
+            <div id="balance">32</div>
+        </div>
+        <h3 id="alert"></h3>
+    </main>
+    <footer>
+        <p>Spinfinity &copy; - 2025 WebSite - Powered by Ossas</p>
+        <a class="discord" href="https://discord.gg/zu53RTeG77">
+            <h4><i class="fa-brands fa-discord"></i> Discord</h4>
+        </a>
+    </footer>
+</body>
+</html>
