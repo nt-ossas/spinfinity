@@ -5,6 +5,7 @@ window.onload = function() {
     
     //script.js
     updateBalance();
-    checkMidnight();
-    setInterval(checkMidnight, 60000); 
+
+    //theme.js
+    loadTheme();
 };

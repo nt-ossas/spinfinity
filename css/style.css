@@ -1,6 +1,15 @@
+:root {
+    --bg-color: #0D0D1A; 
+    --text-color: #E0E0FF;
+    --heading-color:#26264D;
+    --accent-color: #5865f2;
+    --discord-color: #7289da;
+    --shadow-color: rgba(15, 15, 15, 0.5);
+}
+
 body {
-    background-color: rgb(255, 196, 107);
-    color: #0f0f0f;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     font-family: 'Roboto', sans-serif;
     margin: auto;
     margin-top: 50px;
@@ -10,44 +19,52 @@ body {
 
 h1 {
     text-align: center;
-    color: #2c2c2c;
+    color: var(--text-color);
     font-size: 3em;
     margin: 0;
     padding: 10px 0;
     text-transform: uppercase;
     letter-spacing: 10px;
-    text-shadow: 0 2px 10px rgba(15, 15, 15, .5);
+    text-shadow: 0 2px 10px var(--shadow-color);
     margin-bottom: 25px;
 }
 
-.box{
+#max{
+    margin-top: -35px;
+}
+
+#max::before {
+    content: 'Record crediti: ';
+}
+
+.box {
     justify-content: center;
     text-align: center;
     margin-bottom: 25px;
 }
 
 .button {
-    background-color: #2c2c2c;
+    background-color: var(--heading-color);
     color: #fff;
     border: 0;
     padding: 10px 20px;
-    margin: 10px;
+    margin: auto 10px;
     border-radius: 50px;
     font-size: 1.5em;
     cursor: pointer;
-    box-shadow: 0 2px 10px rgba(15, 15, 15, .5);
+    box-shadow: 0 2px 10px var(--shadow-color);
     transition: .3s;
     max-width: 150px;
 }
 
 .button:hover {
-    background-color: #0f0f0f;
-    color: rgb(255, 196, 107);
+    background-color: var(--text-color);
+    color: var(--bg-color);
     scale: 1.1;
     transition: .3s;
 }
 
-select.button{
+select.button {
     appearance: none;
     width: 100%;
     text-align: center;
@@ -63,19 +80,26 @@ select.button{
 
 .button-container {
     font-size: .8em;
+    display: flex;
+    justify-content: center;
+}
+
+#difficulty{
+    width: 100%;
+    
 }
 
 .reel-container {
-    background-color: #2c2c2c;
+    background-color: var(--heading-color);
     max-width: 300px;
     margin: 0 auto;
     padding: 25px 10px;
     border-radius: 50px;
-    box-shadow: 0 2px 10px rgba(15, 15, 15, .5);
+    box-shadow: 0 2px 10px var(--shadow-color);
 }
 
 .reel {
-    border-left: 1px solid #0f0f0f;
+    border-left: 1px solid var(--text-color);
     padding-left: 15px;
     font-size: 2.5em;
     margin-inline: 10px;
@@ -89,38 +113,38 @@ select.button{
     content: " crediti";
 }
 
-h2{
+h2 {
     text-align: center;
-    color: #2c2c2c;
+    color: var(--text-color);
     font-size: 2em;
     margin: 0;
     padding: 10px 0;
     text-transform: uppercase;
     letter-spacing: 10px;
-    text-shadow: 0 2px 10px rgba(15, 15, 15, .5);
+    text-shadow: 0 2px 10px var(--shadow-color);
     margin-bottom: 25px;
 }
 
-#balance{
+#balance {
     text-align: center;
-    color: #2c2c2c;
+    color: var(--text-color);
     font-size: 2em;
     margin-top: -35px;
     padding: 10px 0;
     text-transform: uppercase;
     letter-spacing: 5px;
-    text-shadow: 0 2px 10px rgba(15, 15, 15, .5);
+    text-shadow: 0 2px 10px var(--shadow-color);
     margin-bottom: 25px;
 }
 
-#alert{
+#alert {
     text-align: center;
-    color: #2c2c2c;
+    color: var(--text-color);
     font-size: 1em;
     padding: 10px 0;
     text-transform: uppercase;
     letter-spacing: 2.5px;
-    text-shadow: 0 2px 10px rgba(15, 15, 15, .5);
+    text-shadow: 0 2px 10px var(--shadow-color);
     margin-bottom: 25px;
 }
 
@@ -144,68 +168,86 @@ h2{
     100% { scale:1.5; border:0;}
 }
 
-.spin-left{
+.spin-left {
     animation: spinAnimationLeft 1s ease-in-out;
 }
 
-.spin-right{
+.spin-right {
     animation: spinAnimationRight 1s ease-in-out;
 }
 
-footer p{
+input {
+    text-align: center;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    width: 15px;
+}
+
+footer p {
     margin: auto;
     text-align: center;
     opacity: .5;
 }
 
-footer .discord{
+footer .discord {
     text-align: left;
     display: flex;
     color: #fff;
     justify-content: center;
     margin-top: 25px;
-    background-color: #7289da;
+    background-color: var(--discord-color);
     width: 125px;
     margin: 15px auto;
     padding: 0;
     height: 50px;
     align-items: center;
     border-radius: 35px;
-    box-shadow: 0 2px 10px rgba(15, 15, 15, .5);
+    box-shadow: 0 2px 10px var(--shadow-color);
     transition: .3s;
     text-decoration: none;
 }
 
-footer .discord:hover{
-    background-color: #5865f2;
+footer .discord:hover {
+    background-color: var(--accent-color);
     scale: 1.1;
     cursor: pointer;
     transition: .3s;
 }
 
-table{
+table {
     border-collapse: collapse;
     margin-inline: auto;
     margin-bottom: 75px;
-    box-shadow: 0 2px 10px rgba(15, 15, 15, .5);
+    box-shadow: 0 2px 10px var(--shadow-color);
 }
 
-td, th{
-    border: 2.5px solid #2c2c2c;
+td, th {
+    border: 2.5px solid var(--heading-color);
     padding: 10px 20px;
 }
 
-td:last-child::after{
+td:nth-child(2)::after {
     content: ' * moltiplicatore * puntata';
 }
 
-.done{
-    background-color: #5865f2;
-    color: #fff;
-    box-shadow: 0 2px 10px rgb(0, 116, 211);
+td:last-child::after {
+    content: ' * (5 - Rank) * moltiplicatore';
 }
 
-.bar{
+.done {
+    background-color: var(--accent-color);
+    color: #ffffff;
+    box-shadow: 0 2px 10px var(--accent-color);
+}
+
+.bar {
     display: flex;
     margin: 0 auto;
     max-width: 80%;
@@ -215,14 +257,14 @@ td:last-child::after{
     justify-content: center;
 }
 
-.rank-title{
+.rank-title {
     font-size: 1em;
-    color: #2c2c2c;
+    color: var(--text-color);
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 2px;
     width: 25%;
-    text-shadow: 0 2px 10px rgba(15, 15, 15, .5);
+    text-shadow: 0 2px 10px var(--shadow-color);
 }
 
 .bar input[type="range"] {
@@ -232,7 +274,7 @@ td:last-child::after{
     border-radius: 5px;
     outline: none;
     opacity: 0.7;
-    background: #2c2c2c;
+    background: var(--heading-color);
     transition: opacity .2s;
 }
 
@@ -241,7 +283,7 @@ td:last-child::after{
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: rgb(0, 116, 211);
+    background: var(--accent-color);
     cursor: default;
 }
 
@@ -249,11 +291,15 @@ td:last-child::after{
     opacity: 1;
 }
 
-#rank-value{
+#rank-value {
     font-size: 1.5em;
     letter-spacing: 4px;
 }
 
-#rank-value::before{
+#rank-value::before {
     content: 'XP attuali: ';
+}
+
+.hidden {
+    display: none;
 }

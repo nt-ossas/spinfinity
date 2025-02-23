@@ -1,85 +1,96 @@
-
-    <!DOCTYPE html>
-    <html lang="it">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Spinfinity</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
-            integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
-            crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="css/style.css">
-        <script src="js/onload.js"></script>
-        <script src="js/script.js"></script>
-        <script src="js/rank.js"></script>
-    </head>
-    <body>
-        <main>
-            <div class="bar" id="rank-bar">
-                <input type="range" name="rank" id="rank" min="100" max="200" value="100" disabled style="background: linear-gradient(to right, rgb(0, 116, 211) 0%, #2c2c2c 0%);">
-            </div>
-            <h2 id="rank-value">Rank attuale: </h2>
-        </main>
-        <h1>Spinfinity</h1>
-        <main>
-            <div class="box">
-                <div class="reel-container container">
-                    <div class="reel" id="reel1">7️⃣</div>
-                    <div class="reel" id="reel2">7️⃣</div>
-                    <div class="reel" id="reel3">7️⃣</div>
-                </div>
-                <div class="button-container container">
-                    <div id="difficulty-container">
-                        <select name="difficulty" id="difficulty" class="button">
-                            <option value="1" selected>Skibidi Toilet</option>
-                        </select>
-                    </div>
-                    <select name="amount" id="betAmount" class="button">
-                        <option value="1" selected>1</option>
-                        <option value="3" >3</option>
-                        <option value="5" >5</option>
-                        <option value="10" >10</option>
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="icon" href="img/spinfinity.png">
+    <title>Spinfinity</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/onload.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/rank.js"></script>
+    <script src="js/general.js"></script>
+    <script src="js/theme.js"></script>
+</head>
+<body>
+    <h1>Spinfinity</h1>
+    <main>
+        <div class="button-container container">
+                <div id="difficulty-container">
+                    <select name="difficulty" id="difficulty" class="button">
+                        <option value="1" selected>Skibidi Toilet</option>
                     </select>
                 </div>
-                <button class="button" onclick="spin()">SPIN</button>
             </div>
-            <div class="box">
-                <h2>Portafoglio: </h2>
-                <div id="balance">32</div>
+        <div class="box">
+            <div class="reel-container container">
+                <div class="reel" id="reel1">7️⃣</div>
+                <div class="reel" id="reel2">7️⃣</div>
+                <div class="reel" id="reel3">7️⃣</div>
             </div>
-            <h3 id="alert"></h3>
-        </main>
-        <table>
-            <tr>
-                <th>Risultato</th>
-                <th>Vincita</th>
-            </tr>
-            <tr id="r0" class="row">
-                <td>Niente</td>
-                <td>0</td>
-            </tr>
-            <tr id="r1" class="row">
-                <td>Coppia divisa</td>
-                <td>1</td>
-            </tr>
-            <tr id="r2" class="row">
-                <td>Coppia unita</td>
-                <td>2</td>
-            </tr>
-            <tr id="r3" class="row">
-                <td>Trio</td>
-                <td>5</td>
-            </tr>
-            <tr id="r4" class="row">
-                <td>Triplo 7</td>
-                <td>10</td>
-            </tr>
-        </table>
-        <footer>
-            <p>Spinfinity &copy; - 2025 WebSite - Powered by Ossas</p>
-            <a class="discord" href="https://discord.gg/zu53RTeG77">
-                <h4><i class="fa-brands fa-discord"></i> Discord</h4>
-            </a>
-        </footer>
-    </body>
-    </html>
+            
+            <div class="button-container container">
+                <div id="bet-container">
+                    <input type="number" name="amount" id="betAmount" class="button" value="1" min="1" max="5" placeholder="1">
+                </div>
+                <button class="button" onclick="elementHidden('table')"><i class="fa-solid fa-table"></i></button>
+                <button class="button" onclick="toggleTheme()"><i class="fa-solid fa-circle-half-stroke"></i></button>
+            </div>
+            <button class="button" onclick="spin()">SPIN</button>
+        </div>
+        <div class="box">
+            <h2>Portafoglio: </h2>
+            <div id="balance">32</div>
+            <h5 id="max"></h5>
+        </div>
+        <h3 id="alert"></h3>
+    </main>
+    <main>
+        <div class="bar" id="rank-bar">
+            <input type="range" name="rank" id="rank" min="100" max="200" value="100" disabled style="background: linear-gradient(to right, rgb(0, 116, 211) 0%, #2c2c2c 0%);">
+        </div>
+        <h2 id="rank-value">Rank attuale: </h2>
+    </main>
+    <table id="table" class="hidden">
+        <tr>
+            <th>Risultato</th>
+            <th>Vincita</th>
+            <th>XP</th>
+        </tr>
+        <tr id="r0" class="row">
+            <td>Niente</td>
+            <td>0</td>
+            <td>0</td>
+        </tr>
+        <tr id="r1" class="row">
+            <td>Coppia divisa</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr id="r2" class="row">
+            <td>Coppia unita</td>
+            <td>2</td>
+            <td>2</td>
+        </tr>
+        <tr id="r3" class="row">
+            <td>Trio</td>
+            <td>5</td>
+            <td>5</td>
+        </tr>
+        <tr id="r4" class="row">
+            <td>Triplo 7</td>
+            <td>10</td>
+            <td>10</td>
+        </tr>
+    </table>
+    <footer>
+        <p>Spinfinity &copy; - 2025 WebSite - Powered by Ossas</p>
+        <a class="discord" href="https://discord.gg/zu53RTeG77">
+            <h4><i class="fa-brands fa-discord"></i> Discord</h4>
+        </a>
+    </footer>
+</body>
+</html>

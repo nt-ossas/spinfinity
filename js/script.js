@@ -45,6 +45,26 @@ function updateBalance() {
     var credits = loadCredits();
     document.getElementById('balance').innerHTML = credits;
     console.log("Crediti aggiornati a:", credits);
+    maxCredits(credits);
+}
+
+function maxCredits(balance){
+    var max = loadMax();
+    if (balance > max) {
+        max = balance;
+        localStorage.setItem("max", max);
+    }
+    document.getElementById("max").textContent = max;
+}
+
+function loadMax(){
+    var max = localStorage.getItem('max');
+    if(!isNaN(max) && max > 0)
+        return max;
+    else{
+        console.error("Errore nel caricamento di Max");
+        return 0;
+    } 
 }
 
 function display(message) {
@@ -61,7 +81,7 @@ function spin() {
     }
 
     var credits = loadCredits();
-    if (betAmount > credits) {
+    if (betAmount >= credits) {
         display('Crediti insufficienti.');
         return;
     }
@@ -138,7 +158,7 @@ function calculateWinnings(result, betAmount) {
         if (result[0] === '7️⃣') {
             done = 4;
             total = betAmount * 10 * multiplier;
-            xp = 8;
+            xp = 10;
         }
         done = 3;
         total = betAmount * 5 * multiplier;
@@ -159,24 +179,29 @@ function calculateWinnings(result, betAmount) {
             xp = 0;
     }
 
-    if(total > 0 && done > 0){
-        display(`+ ${total} crediti ! <br> + ${xp} xp !`);
-    }
+    if(total > 0 && done > 0)
+        display(`+ ${total} crediti ! <br> + ${addXP(xp, multiplier)} xp !`);
 
-    addXP(xp, multiplier);
     justDone(done);
 
     return total;
 }
 
 function addXP(xp, multiplier){
-    var rank = loadRank();
-    console.log("Xp: " + loadRank());
+    var rank = Math.floor(loadRank() / 100);
 
-    xp < 0 ? xp = xp * (5 - Math.floor(rank / 100)) : xp = xp * (5 - Math.floor(rank / 100)) * multiplier;
+    console.log("Xp iniziali: " + xp);
+    console.log("Mul iniziali: " + multiplier);
 
+    rank > 4 ? rank = 4 : rank = rank;
+
+    xp = xp * (5 - rank);
+    if (xp > 0)
+        xp *= multiplier;
+    
     console.log("Xp ottenuti: " + xp);
     upRank(xp);
+    return xp;
 }
 
 function justDone(done){
@@ -188,12 +213,4 @@ function justDone(done){
     });
 
     row.classList.add(`done`);
-}
-
-function checkMidnight() {
-    var now = new Date();
-    if (now.getHours() === 0 && now.getMinutes() === 0) {
-        addCredits(20);
-        display('Hai ricevuto 20 crediti per il nuovo giorno!');
-    }
 }
