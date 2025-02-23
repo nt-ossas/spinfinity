@@ -20,6 +20,12 @@ h1 {
     margin-bottom: 25px;
 }
 
+.box{
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
 .button {
     background-color: #2c2c2c;
     color: #fff;
@@ -31,6 +37,7 @@ h1 {
     cursor: pointer;
     box-shadow: 0 2px 10px rgba(15, 15, 15, .5);
     transition: .3s;
+    max-width: 150px;
 }
 
 .button:hover {
@@ -174,4 +181,79 @@ footer .discord:hover{
     scale: 1.1;
     cursor: pointer;
     transition: .3s;
+}
+
+table{
+    border-collapse: collapse;
+    margin-inline: auto;
+    margin-bottom: 75px;
+    box-shadow: 0 2px 10px rgba(15, 15, 15, .5);
+}
+
+td, th{
+    border: 2.5px solid #2c2c2c;
+    padding: 10px 20px;
+}
+
+td:last-child::after{
+    content: ' * moltiplicatore * puntata';
+}
+
+.done{
+    background-color: #5865f2;
+    color: #fff;
+    box-shadow: 0 2px 10px rgb(0, 116, 211);
+}
+
+.bar{
+    display: flex;
+    margin: 0 auto;
+    max-width: 80%;
+    align-items: center;
+    gap: 10px; 
+    text-align: center;
+    justify-content: center;
+}
+
+.rank-title{
+    font-size: 1em;
+    color: #2c2c2c;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    width: 25%;
+    text-shadow: 0 2px 10px rgba(15, 15, 15, .5);
+}
+
+.bar input[type="range"] {
+    -webkit-appearance: none;
+    width: 50%;
+    height: 10px;
+    border-radius: 5px;
+    outline: none;
+    opacity: 0.7;
+    background: #2c2c2c;
+    transition: opacity .2s;
+}
+
+.bar input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgb(0, 116, 211);
+    cursor: default;
+}
+
+.bar input[type="range"]:hover {
+    opacity: 1;
+}
+
+#rank-value{
+    font-size: 1.5em;
+    letter-spacing: 4px;
+}
+
+#rank-value::before{
+    content: 'XP attuali: ';
 }

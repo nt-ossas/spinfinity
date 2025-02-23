@@ -1,9 +1,3 @@
-window.onload = function() {
-    updateBalance();
-    checkMidnight();
-    setInterval(checkMidnight, 60000); // Check every minute
-};
-
 function loadCredits() {
     var token = localStorage.getItem('credits');
     if (token)
@@ -37,6 +31,10 @@ function setCredits(amount) {
 
 function rmCredits(amount) {
     var credits = loadCredits();
+    if (credits - amount < 0) {
+        display('Crediti insufficienti.');
+        return credits;
+    }
     credits -= amount;
     saveCredits(credits);
     updateBalance();
@@ -54,6 +52,8 @@ function display(message) {
 }
 
 function spin() {
+    console.clear();
+
     var betAmount = parseInt(document.getElementById('betAmount').value, 10);
     if (isNaN(betAmount) || betAmount <= 0) {
         display('Seleziona una scommessa valida.');
@@ -80,7 +80,6 @@ function spin() {
         var winnings = calculateWinnings(result, betAmount);
         if (winnings > 0) {
             addCredits(winnings);
-            display('Hai vinto ' + winnings + ' crediti! Vedi che il gambling funziona?');
         } else {
             display('Hai perso, ma non è finito il gambling!');
         }
@@ -93,6 +92,11 @@ function spin() {
 
 function spinReels() {
     var difficulty = parseInt(document.getElementById('difficulty').value, 10);
+    if (isNaN(difficulty) || difficulty < 1 || difficulty > 4) {
+        console.error('Difficoltà non valida.');
+        return [];
+    }
+
     var reels = [];
     switch (difficulty) {
         case 1:
@@ -125,35 +129,65 @@ function displayResult(result) {
 }
 
 function calculateWinnings(result, betAmount) {
-    var difficulty = parseInt(document.getElementById('difficulty').value, 10);
-    var multiplier = 1;
-
-    switch (difficulty) {
-        case 1:
-            multiplier = 1;
-            break;
-        case 2:
-            multiplier = 2;
-            break;
-        case 3:
-            multiplier = 3;
-            break;
-        case 4:
-            multiplier = 4;
-            break;
-        default:
-            multiplier = 1;
-    }
+    var multiplier = parseInt(document.getElementById('difficulty').value, 10);
+    var total = 0;
+    var done = 0;
+    var xp = 0;
 
     if (result[0] === result[1] && result[1] === result[2]) {
         if (result[0] === '7️⃣') {
-            return betAmount * 10 * multiplier;
+            done = 4;
+            total = betAmount * 10 * multiplier;
+            xp = 8;
         }
-        return betAmount * 5 * multiplier;
-    } else if (result[0] === result[1] || result[1] === result[2] || result[0] === result[2]) {
-        return betAmount * 2 * multiplier;
+        done = 3;
+        total = betAmount * 5 * multiplier;
+        xp = 5;
+    } else if(result[0] === result[1] || result[1] === result[2]){
+        done = 2;
+        total = betAmount * 2 * multiplier;
+        xp = 2;
+    } else if (result[0] === result[2]) {
+        done = 1;
+        total = betAmount * 1 * multiplier;
+        xp = 1;
+    } else if(result[0] != result[1] && result[1] != result[2]){
+        done = 0;
+        if(multiplier == 4)
+            xp = -1;
+        else
+            xp = 0;
     }
-    return 0;
+
+    if(total > 0 && done > 0){
+        display(`+ ${total} crediti ! <br> + ${xp} xp !`);
+    }
+
+    addXP(xp, multiplier);
+    justDone(done);
+
+    return total;
+}
+
+function addXP(xp, multiplier){
+    var rank = loadRank();
+    console.log("Xp: " + loadRank());
+
+    xp < 0 ? xp = xp * (5 - Math.floor(rank / 100)) : xp = xp * (5 - Math.floor(rank / 100)) * multiplier;
+
+    console.log("Xp ottenuti: " + xp);
+    upRank(xp);
+}
+
+function justDone(done){
+    var row = document.getElementById(`r${done}`);
+    var lines = document.querySelectorAll(`.row`);
+
+    lines.forEach(line => {
+        line.classList.remove(`done`);
+    });
+
+    row.classList.add(`done`);
 }
 
 function checkMidnight() {
